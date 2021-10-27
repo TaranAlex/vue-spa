@@ -41,31 +41,57 @@ export default {
     }
   },
   created() {
-    this.getAllPosts();
-    this.getAllUsers();
+    const getAllPosts = new Promise((resolve, reject) => {
+      resolve(this.getAllPosts());
+    });
+    const getAllUsers = new Promise((resolve, reject) => {
+      resolve(this.getAllUsers());
+    });
+    Promise.all([getAllPosts, getAllUsers])
+      .then(() => {
+        console.log("let's go to the next task!")
+    })
   },
 
   methods: {
-    getAllPosts() {
-      axios.get(this.endpoint)
-        .then(response => {
-          this.posts = response.data;
-        })
-        .catch(error => {
-          console.log('-----error-------');
-          console.log(error);
-        })
+    getAllPosts: async function () {
+      try {
+        const response = await axios.get(this.endpoint);
+        console.log('getAllPosts: ', response.data);
+        this.posts = response.data;
+      } catch (err) {
+        console.error(err);
+      }
     },
-    getAllUsers() {
-      axios.get(this.users_endpoint)
-        .then(response => {
-          this.users = response.data;
-        })
-        .catch(error => {
-          console.log('-----error-------');
-          console.log(error);
-        })
-    }
+    getAllUsers: async function () {
+      try {
+        const response = await axios.get(this.users_endpoint);
+        console.log('getAllUsers: ', response.data);
+        this.users = response.data;
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    // getAllPosts() {
+    //   axios.get(this.endpoint)
+    //     .then(response => {
+    //       this.posts = response.data;
+    //     })
+    //     .catch(error => {
+    //       console.log('-----error-------');
+    //       console.log(error);
+    //     })
+    // },
+    // getAllUsers() {
+    //   axios.get(this.users_endpoint)
+    //     .then(response => {
+    //       this.users = response.data;
+    //     })
+    //     .catch(error => {
+    //       console.log('-----error-------');
+    //       console.log(error);
+    //     })
+    // }
   }
 }
 </script>
