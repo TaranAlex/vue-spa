@@ -49,15 +49,14 @@ export default {
     }
   },
   created() {
-    // const getAllPosts = new Promise((resolve, reject) => {
-    //   resolve(this.getAllPosts());
-    // });
-    // const getAllUsers = new Promise((resolve, reject) => {
-    //   resolve(this.getAllUsers());
-    // });
-    // Promise.all([getAllPosts, getAllUsers])
-    //   .then(() => {
-    //     console.log("let's go to the next task!")
+    // Promise.all([this.getAllPosts(), this.getAllUsers()])
+    //   .then(values => {
+    //     this.posts = values[0].data;
+    //     console.log('posts received')
+    //     this.users = values[1].data;
+    //     console.log('users received')
+    // }).then(() => {
+    //   console.log("let's go to the next task!")
     // })
   },
 
@@ -73,24 +72,32 @@ export default {
   },
 
   methods: {
-    getAllPosts: async function () {
-      try {
-        const response = await axios.get(this.endpoint);
-        console.log('getAllPosts: ', response.data);
-        this.posts = response.data;
-      } catch (err) {
-        console.error(err);
-      }
+    getAllPosts() {
+        return axios.get(this.endpoint);
     },
-    getAllUsers: async function () {
-      try {
-        const response = await axios.get(this.users_endpoint);
-        console.log('getAllUsers: ', response.data);
-        this.users = response.data;
-      } catch (err) {
-        console.error(err);
-      }
+    getAllUsers() {
+      return axios.get(this.users_endpoint);
     },
+
+    // getAllPosts: async function () {
+    //   try {
+    //     const response = await axios.get(this.endpoint);
+    //     console.log('getAllPosts: ', response.data);
+    //     this.posts = response.data;
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // },
+    // getAllUsers: async function () {
+    //   try {
+    //     const response = await axios.get(this.users_endpoint);
+    //     console.log('getAllUsers: ', response.data);
+    //     this.users = response.data;
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // },
+
     // getAllPosts() {
     //   axios.get(this.endpoint)
     //     .then(response => {
