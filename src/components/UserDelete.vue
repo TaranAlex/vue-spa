@@ -1,9 +1,7 @@
 <template lang="html">
   <div class="post" v-if="user">
-    <h1 class="post__title">show user page</h1>
-    <p class="post__body">name - {{ user.name }}</p>
-    <p class="post__body">email - {{ user.email }}</p>
-    <p class="post__id">id - {{ user.id }}</p>
+    <h1 class="post__title">user delete page</h1>
+    <p class="post__body">user for delete - {{ user.name }}</p>
   </div>
 </template>
 <script>

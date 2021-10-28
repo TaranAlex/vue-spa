@@ -1,54 +1,18 @@
-<template>
-  <div id="app">
-    <header>
-      <h1>{{ msg }}</h1>
-    </header>
-    <main>
-    </main>
+<template lang="html">
+  <div className="greeting">
+    <h2>
+      Wellcome to the Vue.js blog
+    </h2>
+    <img src="../assets/logo.png" alt="vuejs logo">
   </div>
 </template>
 
-<script>
-  export default {
-    name: 'hello',
-    data () {
-      return {
-        msg: 'Hello',
-      }
-    },
-    created() {
-    },
-
-    methods: {
-    }
-  }
-</script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+<style >
+.greeting {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+  flex-direction: column;
 }
 </style>

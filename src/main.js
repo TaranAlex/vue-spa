@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import App from './App.vue'
-import Post from './components/Post.vue'
+import Users from './components/Users.vue'
 import Hello from './components/Hello.vue'
 import User from './components/User.vue'
+import UserEdit from './components/UserEdit.vue'
+import UserDelete from './components/UserDelete.vue'
 import {store} from '../store';
 Vue.use(Router)
 
@@ -15,16 +17,29 @@ const router = new Router({
       component: Hello,
     },
     {
-      path: '/post/:id',
-      name:'post',
-      component: Post,
-      props: true,
-    },
-    {
-      path: '/user/:id',
-      name:'user',
-      component: User,
-      props: true,
+      path: '/users',
+      name:'users',
+      component: Users,
+      children: [
+        {
+          path: 'user/:id',
+          name:'user',
+          component: User,
+          props: true,
+        },
+        {
+          path: 'user/:id/edit',
+          name:'userEdit',
+          component: UserEdit,
+          props: true,
+        },
+        {
+          path: 'user/:id/delete',
+          name:'userDelete',
+          component: UserDelete,
+          props: true,
+        },
+      ]
     },
   ]
 })
