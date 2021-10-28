@@ -6,11 +6,18 @@
     <main>
       <aside class="sidebar">
         <router-link
-          v-for="user in users"
+          v-for="user in usersList"
           active-class="is-active"
           class="link"
           :to="{ name: 'user', params: { id: user.id } }">
           {{user.id}}. {{user.name}} <br>
+
+<!--          v-for="user in users"-->
+<!--          active-class="is-active"-->
+<!--          class="link"-->
+<!--          :to="{ name: 'user', params: { id: user.id } }">-->
+<!--          {{user.id}}. {{user.name}} <br>-->
+
 <!--          v-for="post in posts"-->
 <!--          active-class="is-active"-->
 <!--          class="link"-->
@@ -29,6 +36,7 @@
 
 <script>
 import axios from 'axios';
+import {mapGetters} from 'vuex';
 export default {
   name: 'app',
   data () {
@@ -41,16 +49,27 @@ export default {
     }
   },
   created() {
-    const getAllPosts = new Promise((resolve, reject) => {
-      resolve(this.getAllPosts());
-    });
-    const getAllUsers = new Promise((resolve, reject) => {
-      resolve(this.getAllUsers());
-    });
-    Promise.all([getAllPosts, getAllUsers])
-      .then(() => {
-        console.log("let's go to the next task!")
-    })
+    // const getAllPosts = new Promise((resolve, reject) => {
+    //   resolve(this.getAllPosts());
+    // });
+    // const getAllUsers = new Promise((resolve, reject) => {
+    //   resolve(this.getAllUsers());
+    // });
+    // Promise.all([getAllPosts, getAllUsers])
+    //   .then(() => {
+    //     console.log("let's go to the next task!")
+    // })
+  },
+
+  mounted() {
+    this.$store.dispatch('GET_USERS');
+  },
+
+  computed: {
+    ...mapGetters({usersList: 'USERS'}),
+    // usersList() {
+    //   return this.$store.getters.USERS;
+    // },
   },
 
   methods: {

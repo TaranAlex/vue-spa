@@ -4,6 +4,7 @@ import App from './App.vue'
 import Post from './components/Post.vue'
 import Hello from './components/Hello.vue'
 import User from './components/User.vue'
+import {store} from '../store';
 Vue.use(Router)
 
 const router = new Router({
@@ -30,6 +31,7 @@ const router = new Router({
 
 new Vue({
   el: '#app',
+  store,
   render: h => h(App),
   router
 })
